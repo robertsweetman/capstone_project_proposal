@@ -5,8 +5,8 @@
 ### Business Stakeholders
 
 - CTO
-- Head of IT
 - Cybersecurity Manager
+- Client Services Manager
 
 ### Technical Stakeholders
 
