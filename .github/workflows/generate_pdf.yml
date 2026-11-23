@@ -191,11 +191,11 @@ jobs:
         run: |
           # Convert the full content PDF to DOCX
           echo "Converting full content PDF to Word format..."
-          soffice --headless --convert-to docx full_content.pdf
+          soffice --headless --infilter="writer_pdf_import" --convert-to docx:"MS Word 2007 XML" full_content.pdf
           
           # Convert the main content PDF to DOCX
           echo "Converting main content PDF to Word format..."
-          soffice --headless --convert-to docx main_content.pdf
+          soffice --headless --infilter="writer_pdf_import" --convert-to docx:"MS Word 2007 XML" main_content.pdf
           
           # Also create Word documents directly from HTML
           echo "Converting full content HTML to Word format..."
