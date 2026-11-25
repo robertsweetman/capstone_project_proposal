@@ -1,7 +1,3 @@
-# module_7
+# Capstone project proposal
 
-Content for Multiverse Advance Software Engineering Degree module 7
-
-Content is available [online as a github page](https://robertsweetman.github.io/module_7/)
-
-Final EPA project is between 5400 and 6600 words.
+Proposal for final capstone project - Adv SW Engineering Degree
