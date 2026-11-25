@@ -2,23 +2,23 @@
 
 ## Scope
 
-The project will deliver a consistent, repeatable and secure cloud platform for hosting the client's services. (S1)
+The project will deliver a consistent, repeatable and secure internal development platform for hosting the client's application services. (S1)
 
-While the intention is to become fully cloud native, what's lacking is a shared approach for building and managing services. (S1, S16)
+The organisation intends to become fully cloud native, but currently lacks a shared approach for building and managing services. (S1, S16)
 
-Teams are application focussed and, without guidance or automation, each would likely re-invent a slightly different wheel. (S3, S16)
+Application teams are not consistently following the same deployment patterns. (S3, S16)
 
-Each would ask the business the same questions about CI/CD, repositories, resource naming, resource tagging, permissions, user management and so forth. (S16)
+Teams repeat decisions about CI/CD, repositories, resource naming, resource tagging, permissions, identity and user management. (S16)
 
-Inconsistency also risks security misconfigurations, shortcuts and slow project starts. (K3, S2)
+This inconsistency risks security misconfigurations, avoidable shortcuts and slow project starts. (K3, S2)
 
-Building a platform on which applications can live addresses all these issues. (S1, S2)
+Building a paved-road platform on which application teams can deploy addresses these issues. (S1, S2)
 
 Built-in guardrails also support NIST compliance and protect personal data through least-privilege access and data residency controls. (S3, B3)
 
 ## Business Impact
 
-- Pre-built scaffolding means teams can start building their new application quickly (K1)
+- Pre-built scaffolding means teams can start building a new application quickly (K1)
 - CI/CD pipelines with properly scoped permissions are built in (K26, B3)
 - Rules around networking, resource naming, access, managed identities and security are already in place (K25, B3)
 - Static code scanning (SonarQube) and vulnerability analysis (Trivy) are already built in to guard against security issues (K25, K26)
@@ -29,11 +29,17 @@ The business can be confident that teams building or migrating services work wit
 
 ## Implementation plan
 
-A platform approach was chosen because it removes duplicated effort and enforces security by default, rather than relying on each team's discipline. (S17)
+A platform approach was selected because it removes duplicated effort and enforces security by default, rather than relying on each team's individual discipline. (S17)
 
 ### Analysis & Business Case
 
-A build, hire or buy options appraisal using capability mapping will compare alternatives (K2, K4, K18) and estimate cost and time. (K15)
+A stakeholder workshop and user-story mapping exercise will elicit functional and non-functional requirements from application developers, technical architects and business stakeholders. Requirements will be analysed and prioritised using MoSCoW, with the agreed target of standing up a new project within one working day. (S18)
+
+A build, hire or buy options appraisal will use capability mapping to compare the proposed platform against the alternatives. This technique is appropriate because it explicitly compares required capabilities, ownership, delivery effort and operational support rather than relying on feature lists alone. The analysis will also explain the fit of capability mapping and whether a weighted decision matrix is needed to compare criteria such as cost, security, maintainability and time to value. (K2, K4, K18)
+
+Cost and time estimates will use an initial resource day-rate calculation for internal staff and supplier inputs, supported by story-point estimation for implementation backlog items. Estimates will be re-baselined after each sprint demo and recorded in the project plan. (K15)
+
+The project will maintain a risk and opportunity log. Each item will be scored for likelihood and impact, with named owners and clearly defined mitigation or exploitation activities. Key risks include inconsistent platform adoption, security misconfiguration and delivery delay; opportunities include reusable modules, faster onboarding and broader automation. (K3, S2)
 
 ### Project delivery methods
 
@@ -43,23 +49,23 @@ Sprint demos will update technical stakeholders, with plain-language milestone r
 
 ### Technical Implementation
 
-Requires domain specific research around Azure landing zones, areas of responsibility, terraform state file management, layered security and least privilege. (K18)
+Research will cover Azure landing zones, responsibility boundaries, Terraform state management, layered security and least privilege. The preferred design will be justified through a weighted decision matrix that compares evidence against agreed criteria. Where decisions remain uncertain, targeted proof-of-concept benchmarks will compare configuration and performance before a recommendation is made. (K18)
 
-The main innovations involve broadening the scope of the automation and using cutting edge Azure DevOps approaches, especially around CI/CD pipelines via managed identities and Azure DevOps pools. (S14)
+The main innovation will be to investigate ephemeral, self-hosted Azure DevOps runner pools and OpenID Connect federated credentials for CI/CD authentication. These approaches will be evaluated against traditional fixed runners and stored service-connection secrets using security, provisioning time, cost and operational complexity as the criteria. (S14)
 
 Architecture diagrams and terraform module tests will document and validate the platform (K27), with pull request reviews and branch policies applied throughout. (S19)
 
-Requirements will be prioritised using MoSCoW. (S18)
+Non-functional performance and security benchmarks will be used alongside MoSCoW prioritisation to verify that the platform meets the agreed onboarding and vulnerability requirements. (S18)
 
 ### Timescales (K15)
 
-- 2 weeks, Research, business case & sign off
-- 6 weeks, Implementation (Scrum sprints)
-- 2 weeks, Roll-out, feedback & lessons learned review
+- 2 weeks: research, options appraisal and sign-off
+- 6 weeks: implementation in Scrum sprints
+- 2 weeks: roll-out, feedback and lessons-learned review
 
 ### Success Measures
 
-Time to first deployment, teams onboarded and security findings resolved will show whether requirements are met. (S18)
+Success will be measured by time to first deployment, the number of application teams onboarded and the number of security findings resolved. Benchmarks will also verify that no application deploys with a High or Critical vulnerability and that a new project can be stood up within one working day. (S18)
 
 ## Lessons Learned
 
