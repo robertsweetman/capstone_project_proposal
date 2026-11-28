@@ -4,28 +4,22 @@
 
 The project will deliver a consistent, repeatable and secure internal development platform for hosting the client's application services. (S1)
 
-The organisation intends to become fully cloud native, but currently lacks a shared approach for building and managing services. (S1, S16)
+The organisation intends to become fully cloud native, but lacks a shared approach for building and managing services. Application teams follow different deployment patterns and repeat decisions about CI/CD, repositories, naming, tagging, permissions and identity. (S1, S3, S16)
 
-Application teams are not consistently following the same deployment patterns. (S3, S16)
-
-Teams repeat decisions about CI/CD, repositories, resource naming, resource tagging, permissions, identity and user management. (S16)
-
-This inconsistency risks security misconfigurations, avoidable shortcuts and slow project starts. (K3, S2)
-
-Building a paved-road platform on which application teams can deploy addresses these issues. (S1, S2)
-
-Built-in guardrails also support NIST compliance and protect personal data through least-privilege access and data residency controls. (S3, B3)
+This inconsistency risks security misconfigurations, avoidable shortcuts and slow project starts. (K3, S2) A paved-road platform addresses these issues. Its built-in guardrails support NIST compliance and protect personal data through least-privilege access and data residency controls. (S2, S3, B3)
 
 ## Business Impact
 
-- Pre-built scaffolding means teams can start building a new application quickly (K1)
-- CI/CD pipelines with properly scoped permissions are built in (K26, B3)
-- Rules around networking, resource naming, access, managed identities and security are already in place (K25, B3)
-- Static code scanning (SonarQube) and vulnerability analysis (Trivy) are already built in to guard against security issues (K25, K26)
-- Terraform infra-as-code modules for client resources already exist (K5, K26)
-- Azure DevOps setup (user stories management) comes with sensible defaults (S5)
+The project will deliver:
 
-The business can be confident that teams building or migrating services work within established guardrails, not without oversight. (K1, K25)
+- Pre-built scaffolding so teams can start a new application quickly (K1)
+- CI/CD pipelines with properly scoped permissions (K26, B3)
+- Guardrails for networking, naming, access, managed identities and security (K25, B3)
+- SonarQube static analysis and Trivy vulnerability scanning in every pipeline (K25, K26)
+- Reusable Terraform modules adapted from the client's existing infrastructure-as-code (K26)
+- An Azure DevOps project template with sensible defaults (S5)
+
+Turning existing assets into a self-service product gives the organisation a competitive advantage. New services reach market faster, cost less to start and carry lower security risk than bespoke builds. I will evidence this by comparing time to first deployment and set-up effort before and after adoption. (K1, K25)
 
 ## Implementation plan
 
@@ -33,13 +27,23 @@ A platform approach was selected because it removes duplicated effort and enforc
 
 ### Analysis & Business Case
 
-A stakeholder workshop and user-story mapping exercise will elicit functional and non-functional requirements from application developers, technical architects and business stakeholders. Requirements will be analysed and prioritised using MoSCoW, with the agreed target of standing up a new project within one working day. (S18)
+A stakeholder workshop and user-story mapping will elicit functional and non-functional requirements. These will be prioritised using MoSCoW, with a target of standing up a new project within one working day. (S18)
 
-A build, hire or buy options appraisal will use capability mapping to compare the proposed platform against the alternatives. This technique is appropriate because it explicitly compares required capabilities, ownership, delivery effort and operational support rather than relying on feature lists alone. The analysis will also explain the fit of capability mapping and whether a weighted decision matrix is needed to compare criteria such as cost, security, maintainability and time to value. (K2, K4, K18)
+A build, hire or buy options appraisal will use capability mapping. Each option will then be scored in a weighted decision matrix. Stakeholders will agree the criteria in advance, aligned to strategic principles such as security by default and avoiding vendor lock-in. I will evaluate whether these techniques produced a sound decision. (K2)
 
-Cost and time estimates will use an initial resource day-rate calculation for internal staff and supplier inputs, supported by story-point estimation for implementation backlog items. Estimates will be re-baselined after each sprint demo and recorded in the project plan. (K15)
+The business case will set out costs, tangible and intangible benefits, payback period and risks for each option. I will assess how well it supported the decision compared with a cost-only comparison. (K4)
 
-The project will maintain a risk and opportunity log. Each item will be scored for likelihood and impact, with named owners and clearly defined mitigation or exploitation activities. Key risks include inconsistent platform adoption, security misconfiguration and delivery delay; opportunities include reusable modules, faster onboarding and broader automation. (K3, S2)
+I will prepare the solution proposal with a range of digital tools and standard approaches, detailed in Research Needs. (K5, S5)
+
+Cost and time will be estimated using staff and supplier day rates and story points. Each phase will have a budget with 10% contingency. Actuals will be tracked in Azure DevOps burndown charts and Azure Cost Management, overruns will be managed through MoSCoW scope trade-offs, and estimates will be re-baselined after each sprint demo. (K15)
+
+The project plan will estimate risks and opportunities in a log scored for likelihood and impact, with owners and defined mitigation strategies:
+
+- Low adoption, mitigated by early-adopter teams and onboarding guides
+- Security misconfiguration, mitigated by policy-as-code and pipeline scanning
+- Delivery delay, mitigated by contingency and scope trade-offs
+
+Opportunities include reusable modules and broader automation. The log will be reviewed every sprint. (K3, S2)
 
 ### Project delivery methods
 
@@ -49,13 +53,13 @@ Sprint demos will update technical stakeholders, with plain-language milestone r
 
 ### Technical Implementation
 
-Research will cover Azure landing zones, responsibility boundaries, Terraform state management, layered security and least privilege. The preferred design will be justified through a weighted decision matrix that compares evidence against agreed criteria. Where decisions remain uncertain, targeted proof-of-concept benchmarks will compare configuration and performance before a recommendation is made. (K18)
+I will compare and contrast the chosen design with alternatives and justify the research and evaluation methods used, as set out in Research Needs. (K18)
 
-The main innovation will be to investigate ephemeral, self-hosted Azure DevOps runner pools and OpenID Connect federated credentials for CI/CD authentication. These approaches will be evaluated against traditional fixed runners and stored service-connection secrets using security, provisioning time, cost and operational complexity as the criteria. (S14)
+The main innovation will be ephemeral, self-hosted Azure DevOps runner pools and OpenID Connect federated credentials for CI/CD authentication. I will evaluate them against fixed runners and stored service-connection secrets on security, provisioning time, cost and operational complexity. (S14)
 
-Architecture diagrams and terraform module tests will document and validate the platform (K27), with pull request reviews and branch policies applied throughout. (S19)
+During implementation, I will interpret existing artefacts to drive design changes and record the outcomes in Architecture Decision Records (ADRs) and pull request comments. These artefacts include architecture diagrams, Terraform state, `terraform plan` diffs, SonarQube and Trivy reports, and pipeline logs. Updated diagrams and Terraform module tests will document and validate the platform. (K27) Pull request reviews and branch policies will apply throughout. (S19)
 
-Non-functional performance and security benchmarks will be used alongside MoSCoW prioritisation to verify that the platform meets the agreed onboarding and vulnerability requirements. (S18)
+Performance and security benchmarks will be used to verify that the platform meets the agreed requirements. (S18)
 
 ### Timescales (K15)
 
@@ -65,7 +69,7 @@ Non-functional performance and security benchmarks will be used alongside MoSCoW
 
 ### Success Measures
 
-Success will be measured by time to first deployment, the number of application teams onboarded and the number of security findings resolved. Benchmarks will also verify that no application deploys with a High or Critical vulnerability and that a new project can be stood up within one working day. (S18)
+Success will be measured by time to first deployment, the number of teams onboarded and the number of security findings resolved. Benchmarks will also confirm that no application deploys with a High or Critical vulnerability. (S18)
 
 ## Lessons Learned
 
